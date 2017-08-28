@@ -17,21 +17,25 @@
   lineinfile:
     dest: ~/.bash_profile
     line: "export PATH=$PATH:/usr/local/go/bin"
+  when: env != 'test'
 
 - name: set gopath
   become: false
   lineinfile:
     dest: ~/.bash_profile
     line: "export GOPATH={{ go_path }}"
+  when: env != 'test'
 
 - name: set gopath
   become: false
   lineinfile:
     dest: ~/.bash_profile
     line: "export PATH=$PATH:$GOPATH/bin"
+  when: env != 'test'
 
 - name: set glide
   become: false
   lineinfile:
     dest: ~/.bash_profile
     line: "export GO15VENDOREXPERIMENT=1"
+  when: env != 'test'
